@@ -1,6 +1,6 @@
 import os
 import os.path as osp
-import cPickle
+import pickle as pk
 import json
 import errno
 import numpy as np
@@ -9,12 +9,12 @@ import torch
 
 def pickle(data, file_path):
     with open(file_path, 'wb') as f:
-        cPickle.dump(data, f, cPickle.HIGHEST_PROTOCOL)
+        pk.dump(data, f, pk.HIGHEST_PROTOCOL)
 
 
 def unpickle(file_path):
     with open(file_path, 'rb') as f:
-        data = cPickle.load(f)
+        data = pk.load(f)
     return data
 
 

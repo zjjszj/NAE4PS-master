@@ -1,6 +1,6 @@
 import os
 import sys
-import cPickle as pickle
+import pickle as pk
 
 import torch
 import torch.distributed as dist
@@ -104,7 +104,7 @@ def all_gather(data):
         return [data]
 
     # serialized to a Tensor
-    buffer = pickle.dumps(data)
+    buffer = pk.dumps(data)
     storage = torch.ByteStorage.from_buffer(buffer)
     tensor = torch.ByteTensor(storage).to("cuda")
 
@@ -129,7 +129,7 @@ def all_gather(data):
     data_list = []
     for size, tensor in zip(size_list, tensor_list):
         buffer = tensor.cpu().numpy().tobytes()[:size]
-        data_list.append(pickle.loads(buffer))
+        data_list.append(pk.loads(buffer))
 
     return data_list
 
