@@ -104,6 +104,7 @@ class FasterRCNN_NormAware(GeneralizedRCNN):
                 2048, num_classes,
                 rcnn_bbox_bn)
 
+        print('=========initial embedding_head===============')
         if embedding_head is None:
             embedding_head = NormAwareEmbeddingProj(
                 featmap_names=['feat_res4', 'feat_res5'],
@@ -326,8 +327,8 @@ class NormAwareEmbeddingProj(nn.Module):
         print('==================NormAwareEmbeddingProj init==========================')
         self.projectors = nn.ModuleDict()
         indv_dims = self._split_embedding_dim()
-        for i in self.in_channels:
-            print('---------i-------------', i)
+
+        print('===========in_channels===============', in_channels)
 
         for ftname, in_chennel, indv_dim in zip(self.featmap_names, self.in_channels, indv_dims):
             proj = nn.Sequential(
