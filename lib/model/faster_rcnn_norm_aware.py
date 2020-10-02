@@ -322,14 +322,13 @@ class NormAwareEmbeddingProj(nn.Module):
         super(NormAwareEmbeddingProj, self).__init__()
         self.featmap_names = featmap_names
         # self.in_channels = map(int, in_channels)
-        self.in_channels = [int(i) for i in in_channels]
+        self.in_channels = in_channels
         self.dim = int(dim)
 
         print('==================NormAwareEmbeddingProj init==========================')
         self.projectors = nn.ModuleDict()
         indv_dims = self._split_embedding_dim()
-
-
+        indv_dims = [int(i) for i in indv_dims]
 
         for ftname, in_chennel, indv_dim in zip(self.featmap_names, self.in_channels, indv_dims):
             proj = nn.Sequential(
