@@ -321,7 +321,8 @@ class NormAwareEmbeddingProj(nn.Module):
                  dim=256):
         super(NormAwareEmbeddingProj, self).__init__()
         self.featmap_names = featmap_names
-        self.in_channels = map(int, in_channels)
+        # self.in_channels = map(int, in_channels)
+        self.in_channels = [int(i) for i in in_channels]
         self.dim = int(dim)
 
         print('==================NormAwareEmbeddingProj init==========================')
@@ -330,7 +331,7 @@ class NormAwareEmbeddingProj(nn.Module):
 
 
 
-        for ftname, in_chennel, indv_dim in zip(self.featmap_names, in_channels, indv_dims):
+        for ftname, in_chennel, indv_dim in zip(self.featmap_names, self.in_channels, indv_dims):
             proj = nn.Sequential(
                 nn.Linear(in_chennel, indv_dim),
                 nn.BatchNorm1d(indv_dim))
