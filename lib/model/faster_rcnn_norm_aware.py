@@ -380,7 +380,7 @@ class NormAwareEmbeddingProj(nn.Module):
         return x  # ndim = 2, (N, d)
 
     def _split_embedding_dim(self):
-        parts = len(self.in_channels)
+        parts = len(list(self.in_channels))
         tmp = [self.dim / parts] * parts
         if sum(tmp) == self.dim:
             return tmp
