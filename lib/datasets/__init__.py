@@ -56,7 +56,7 @@ def collate_fn(x):
 
 def get_dataset(args, train=True):
     paths = {
-        'CUHK-SYSU': ('data/CUHK-SYSU/', CUHK_SYSU),
+        'CUHK-SYSU': ('/kaggle/input/cuhk-sysu/CUHK-SYSU_nomacosx/dataset/', CUHK_SYSU),      # 应用于kaggle
         'PRW': ('data/PRW/', PRW)
     }
     p, ds_cls = paths[args.dataset]
