@@ -101,7 +101,7 @@ def resume_from_checkpoint(args, model, optimizer=None, lr_scheduler=None):
     load_name = args.resume
     checkpoint = torch.load(load_name)
     args.train.start_epoch = checkpoint['epoch']
-    model.load_state_dict(checkpoint['model'])
+    model.load_state_dict(checkpoint['model'],strict=False)     # model: no pixel_wise
     if optimizer is not None:
         optimizer.load_state_dict(checkpoint['optimizer'])
     if lr_scheduler is not None:

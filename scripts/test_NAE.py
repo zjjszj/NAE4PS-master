@@ -68,7 +68,6 @@ if __name__ == '__main__':
 
     if hasattr(new_args, 'pixel_wise') and new_args.pixel_wise:
         fn = get_pixel_wise_norm_aware_model
-        print('dddddddddddddddddddddddddddddddddddddddddddd')
     else:
         fn = get_norm_aware_model
 
