@@ -323,6 +323,7 @@ class NormAwareEmbeddingProj(nn.Module):
         self.in_channels = map(int, in_channels)
         self.dim = int(dim)
 
+        print('==================NormAwareEmbeddingProj==========================')
         self.projectors = nn.ModuleDict()
         indv_dims = self._split_embedding_dim()
         for ftname, in_chennel, indv_dim in zip(self.featmap_names, self.in_channels, indv_dims):
@@ -357,7 +358,6 @@ class NormAwareEmbeddingProj(nn.Module):
             norms = self.rescaler(norms).squeeze()
             return embeddings, norms
         else:
-            print('=================',self.projectors.keys())
             outputs = []
             for k, v in featmaps.items():
                 v = self._flatten_fc_input(v)
