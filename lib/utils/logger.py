@@ -3,7 +3,7 @@ import torch.distributed as dist
 from collections import defaultdict, deque
 import datetime
 import time
-import huepy as hue
+# import huepy as hue
 
 from .distributed import is_dist_avail_and_initialized
 
@@ -108,9 +108,12 @@ class MetricLogger(object):
         self.meters[name] = meter
 
     def print_log(self, epoch, step, iters_per_epoch):
-        print(hue.lightgreen('[epoch %2d][iter %4d/%4d] loss: %.4f, lr: %.2e'
+        # print(hue.lightgreen('[epoch %2d][iter %4d/%4d] loss: %.4f, lr: %.2e'
+        #                      % (epoch, step, iters_per_epoch,
+        #                         self.meters['loss_value'].avg, self.meters['lr'].value)))
+        print('[epoch %2d][iter %4d/%4d] loss: %.4f, lr: %.2e'
                              % (epoch, step, iters_per_epoch,
-                                self.meters['loss_value'].avg, self.meters['lr'].value)))
+                                self.meters['loss_value'].avg, self.meters['lr'].value))
         if 'num_fg' in self.meters:       
             print('\tfg/bg: %d/%d, time cost: %.4f' %
                       (self.meters['num_fg'].avg, 

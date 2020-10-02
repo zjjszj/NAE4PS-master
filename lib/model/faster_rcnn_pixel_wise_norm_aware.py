@@ -1,5 +1,5 @@
 from collections import OrderedDict
-import huepy as hue
+# import huepy as hue
 
 import torch
 import torch.nn as nn
@@ -446,5 +446,6 @@ def load_NAE_weights(args, model):
             128, 2048, 1, 1)
 
     model.load_state_dict(state_dict)
-    print(hue.good('NAE pre-trained weights loaded.'))
+    # print(hue.good('NAE pre-trained weights loaded.'))
+    print('===================NAE pre-trained weights loaded.============================')
     return model

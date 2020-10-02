@@ -1,5 +1,5 @@
 import os.path as osp
-import huepy as hue
+# import huepy as hue
 import socket
 from datetime import datetime
 
@@ -37,8 +37,9 @@ def main(args, get_model_fn):
         args.path = osp.join(
             args.path, current_time + '_' + socket.gethostname())
         mkdir_if_missing(args.path)
-        print(hue.info(hue.bold(hue.lightgreen(
-            'Working directory: {}'.format(args.path)))))
+        # print(hue.info(hue.bold(hue.lightgreen(
+        #     'Working directory: {}'.format(args.path)))))
+        print('====================Working directory: {}===================='.format(args.path))
         if args.train.use_tfboard:
             tfboard = SummaryWriter(log_dir=args.path)
         args.export_to_json(osp.join(args.path, 'args.json'))

@@ -5,7 +5,7 @@
 import argparse
 import sys
 import torch
-import huepy as hue
+# import huepy as hue
 
 from .serialization import read_json, write_json
 
@@ -106,8 +106,10 @@ def resume_from_checkpoint(args, model, optimizer=None, lr_scheduler=None):
         optimizer.load_state_dict(checkpoint['optimizer'])
     if lr_scheduler is not None:
         lr_scheduler.load_state_dict(checkpoint['lr_scheduler'])
-    print(hue.good('loaded checkpoint %s' % (load_name)))
-    print(hue.info('model was trained for %s epochs' % (args.train.start_epoch)))
+    # print(hue.good('loaded checkpoint %s' % (load_name)))
+    # print(hue.info('model was trained for %s epochs' % (args.train.start_epoch)))
+    print(('================loaded checkpoint %s================' % (load_name)))
+    print(('================model was trained for %s epochs================' % (args.train.start_epoch)))
     return args, model, optimizer, lr_scheduler
 
 
@@ -156,7 +158,7 @@ def lucky_bunny(i):
     print('|￣￣￣￣￣￣￣￣|')
     print('|    TRAINING    |')
     print('|     epoch      |')
-    print('|       ' + hue.bold(hue.green(str(i))) + '        |')
+    print('|       ' + (str(i)) + '        |')
     print('| ＿＿＿_＿＿＿＿|')
     print(' (\__/) ||')
     print(' (•ㅅ•) || ')

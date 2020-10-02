@@ -1,6 +1,6 @@
 import time
 import os.path as osp
-import huepy as hue
+# import huepy as hue
 
 import torch
 from torch.nn.utils import clip_grad_norm_
@@ -140,6 +140,7 @@ def get_trainer(args, model, train_loader, optimizer, lr_scheduler, device, tfbo
                 'optimizer': optimizer.state_dict(),
                 'lr_scheduler': lr_scheduler.state_dict()
             }, save_name)
-            print(hue.good('save model: {}'.format(save_name)))
+            # print(hue.good('save model: {}'.format(save_name)))
+            print('===============save model: {}======================='.format(save_name))
 
     return trainer
