@@ -219,6 +219,7 @@ class NormAwareRoiHeads(RoIHeads):
         rcnn_features = self.feat_head(roi_pooled_features)  ## vector
 
 
+        print('============rcnn features=', rcnn_features)
         box_regression = self.box_predictor(rcnn_features['feat_res5'])     ## update
         embeddings_, class_logits = self.embedding_head(rcnn_features)      ## update multi classification->person/bg classification
 
@@ -333,6 +334,7 @@ class NormAwareEmbeddingProj(nn.Module):
             init.normal_(proj[1].weight, std=0.01)
             init.constant_(proj[0].bias, 0)
             init.constant_(proj[1].bias, 0)
+            print('==========ftname=====', ftname)
             self.projectors[ftname] = proj
 
         self.rescaler = nn.BatchNorm1d(1, affine=True)
