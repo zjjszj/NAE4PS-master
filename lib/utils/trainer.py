@@ -5,11 +5,14 @@ import os.path as osp
 import torch
 from torch.nn.utils import clip_grad_norm_
 from ignite.engine.engine import Engine, Events
+
+# can not use apex
 try:
     import apex
     from apex import amp
 except ImportError as e:
-    raise
+    # raise
+    pass
 
 from .distributed import reduce_dict, is_main_process
 from .logger import MetricLogger
