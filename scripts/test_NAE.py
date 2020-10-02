@@ -66,11 +66,10 @@ if __name__ == '__main__':
     arg_parser = args_faster_rcnn_norm_aware()
     new_args = lazy_arg_parse(arg_parser)
 
-    # if hasattr(new_args, 'pixel_wise') and new_args.pixel_wise:
-    #     fn = get_pixel_wise_norm_aware_model
-    # else:
-    #     fn = get_norm_aware_model
+    if hasattr(new_args, 'pixel_wise') and new_args.pixel_wise:
+        fn = get_pixel_wise_norm_aware_model
+    else:
+        fn = get_norm_aware_model
 
-    fn = get_pixel_wise_norm_aware_model
 
     main(new_args, fn)
