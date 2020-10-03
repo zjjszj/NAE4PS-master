@@ -165,7 +165,7 @@ class PixelWiseNormAwareRoiHeads(NormAwareRoiHeads):
             embeddings = embeddings.reshape(-1, self.embedding_head.dim)
 
             # remove low scoring boxes
-            inds = torch.nonzero(scores > self.score_thresh).squeeze(1)
+            inds = torch.nonzero(scores > self.score_thresh, as_tuple=False).squeeze(1)
             boxes, scores, labels, embeddings = boxes[
                 inds], scores[inds], labels[inds], embeddings[inds]
 
@@ -327,7 +327,7 @@ def spatial_norm_aware_rcnn_loss(class_logits, box_regression, spatial_labels, l
     # get indices that correspond to the regression targets for
     # the corresponding ground truth labels, to be used with
     # advanced indexing
-    sampled_pos_inds_subset = torch.nonzero(labels > 0).squeeze(1)
+    sampled_pos_inds_subset = torch.nonzero(labels > 0, as_tuple=False).squeeze(1)
     labels_pos = labels[sampled_pos_inds_subset]
     N = class_logits.size(0)
     box_regression = box_regression.reshape(N, -1, 4)
