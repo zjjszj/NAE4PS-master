@@ -156,7 +156,7 @@ class CUHK_SYSU(PersonSearchDataset):
         return probes
 
     @staticmethod
-    @jit(forceobj=True)
+    # @jit(forceobj=True)
     def search_performance_calc(gallery_set, probe_set,
                                 gallery_det, gallery_feat, probe_feat,
                                 det_thresh=0.5, gallery_size=100):

@@ -1,6 +1,5 @@
 from torchvision.models.detection import FasterRCNN
+import torch
 
-a={'one':1,'two':2}
-if 'one' in a:
-    print('ok!')
-
+a=torch.tensor([1,2,3])
+print(type(a>2))
