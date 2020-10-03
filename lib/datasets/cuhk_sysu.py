@@ -243,6 +243,11 @@ class CUHK_SYSU(PersonSearchDataset):
                 # some contain the probe (gt not empty), some not
                 gt = item[1][0].astype(np.int32)
                 count_gt += (gt.size > 0)
+
+                print('==============gallery_imname============', gallery_imname)
+                print('================name_to_det_feat.keys()=================.', name_to_det_feat.keys())
+
+
                 # compute distance between probe and gallery dets
                 if gallery_imname not in name_to_det_feat:
                     continue

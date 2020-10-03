@@ -1,5 +1,6 @@
 from torchvision.models.detection import FasterRCNN
 
-a=[2,2.3]
-a=[int(i) for i in a]
-print(a)
+a={'one':1,'two':2}
+if 'one' in a:
+    print('ok!')
+

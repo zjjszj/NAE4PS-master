@@ -322,10 +322,9 @@ class NormAwareEmbeddingProj(nn.Module):
         super(NormAwareEmbeddingProj, self).__init__()
         self.featmap_names = featmap_names
         # self.in_channels = map(int, in_channels)
-        self.in_channels = in_channels
+        self.in_channels = in_channels     # solve python2 problem: can not enter into zip cycle below
         self.dim = int(dim)
 
-        print('==================NormAwareEmbeddingProj init==========================')
         self.projectors = nn.ModuleDict()
         indv_dims = self._split_embedding_dim()
         indv_dims = [int(i) for i in indv_dims]
@@ -338,7 +337,6 @@ class NormAwareEmbeddingProj(nn.Module):
             init.normal_(proj[1].weight, std=0.01)
             init.constant_(proj[0].bias, 0)
             init.constant_(proj[1].bias, 0)
-            print('==========ftname============', ftname)
             self.projectors[ftname] = proj
 
         self.rescaler = nn.BatchNorm1d(1, affine=True)
