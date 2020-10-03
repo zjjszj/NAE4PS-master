@@ -119,7 +119,7 @@ def args_faster_rcnn():
                         help='Use horizontally-flipped images during training?')
     # Training.data.rcnn/rpn.sampling
     parser.add_argument('--rcnn_batch_size', dest='train.rcnn_batch_size',
-                        type=int, default=32,
+                        type=int, default=16,
                         help='Minibatch size (number of regions of interest [ROIs])\
                               __C.TRAIN.BATCH_SIZE')
     parser.add_argument('--fg_fraction', dest='train.fg_fraction',
@@ -154,7 +154,7 @@ def args_faster_rcnn():
                         type=float, default=0.5,
                         help='Max ratio of foreground examples.')
     parser.add_argument('--rpn_batch_size', dest='train.rpn_batch_size',
-                        type=int, default=32,
+                        type=int, default=16,
                         help='Total number of examples')
     parser.add_argument('--rpn_nms_thresh', dest='train.rpn_nms_thresh',
                         type=float, default=0.7,
