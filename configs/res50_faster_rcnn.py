@@ -62,7 +62,7 @@ def args_faster_rcnn():
                         default=0, type=int)
     parser.add_argument('--epochs', dest='train.epochs',
                         help='number of epochs to train',
-                        default=20, type=int)
+                        default=2, type=int)
     parser.add_argument('--disp_interval', dest='train.disp_interval',
                         help='number of iterations to display',
                         default=10, type=int)
