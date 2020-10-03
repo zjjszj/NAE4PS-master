@@ -156,7 +156,7 @@ class CUHK_SYSU(PersonSearchDataset):
         return probes
 
     @staticmethod
-    # @jit(forceobj=True)
+    # @jit(forceobj=True)  python2->3
     def search_performance_calc(gallery_set, probe_set,
                                 gallery_det, gallery_feat, probe_feat,
                                 det_thresh=0.5, gallery_size=100):
@@ -243,10 +243,6 @@ class CUHK_SYSU(PersonSearchDataset):
                 # some contain the probe (gt not empty), some not
                 gt = item[1][0].astype(np.int32)
                 count_gt += (gt.size > 0)
-
-                print('==============gallery_imname============', gallery_imname)
-                print('================name_to_det_feat.keys()=================.', name_to_det_feat.keys())
-
 
                 # compute distance between probe and gallery dets
                 if gallery_imname not in name_to_det_feat:
