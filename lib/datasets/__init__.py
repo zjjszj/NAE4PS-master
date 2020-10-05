@@ -15,6 +15,7 @@ from ..utils.group_by_aspect_ratio import create_aspect_ratio_groups,\
     GroupedBatchSampler
 
 
+## 多线程类
 class PrefetchGenerator(threading.Thread):
 
     def __init__(self, generator, max_prefetch=1):
@@ -73,6 +74,7 @@ def get_dataset(args, train=True):
         return test_set, probe_set
 
 
+## get map-style dataset
 def get_data_loader(args, train=True):
 
     dataset = get_dataset(args, train)
@@ -94,7 +96,7 @@ def get_data_loader(args, train=True):
 
         data_loader = PrefetchDataLoader(
             dataset, batch_sampler=train_batch_sampler, num_workers=args.num_workers,
-            collate_fn=collate_fn)
+            collate_fn=collate_fn)      ## collate_fn: 将sampler后的数据组成batch数据。输入为sampler数据。常用作补全batch_size个输入数据。
         return data_loader
 
     else:

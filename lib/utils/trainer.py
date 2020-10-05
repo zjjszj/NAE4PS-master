@@ -46,6 +46,12 @@ def get_trainer(args, model, train_loader, optimizer, lr_scheduler, device, tfbo
             args, model_without_ddp, optimizer, lr_scheduler)
 
     def _update_model(engine, data):
+        """
+        Args:
+        :param engine:handle
+        :param data:batch data
+        :return:data to be stored in the engine`s state.
+        """
         images, targets = ship_data_to_cuda(data, device)
 
         loss_dict = model(images, targets)
@@ -103,7 +109,7 @@ def get_trainer(args, model, train_loader, optimizer, lr_scheduler, device, tfbo
     @trainer.on(Events.ITERATION_STARTED)
     def _init_iter(engine):
         if engine.state.iteration % args.train.disp_interval == 0:
-            engine.state.start = time.time()
+            engine.state.start = time.time()    ## 从当前时间开始
 
     @trainer.on(Events.ITERATION_COMPLETED)
     def _post_iter(engine):

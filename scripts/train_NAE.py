@@ -27,10 +27,10 @@ def main(args, get_model_fn):
     if args.distributed:
         init_distributed_mode(args)
     device = torch.device(args.device)
-    cudnn.benchmark = False
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    torch.cuda.manual_seed_all(args.seed)
+    cudnn.benchmark = False     ## 如果每次迭代网络的输入维度/类型变化不大，则可以增加效率，否则降低效率。
+    np.random.seed(args.seed)   ## 为np生成随机数设置种子，设置种子后，每次运行生成的随机数都是一样的。
+    torch.manual_seed(args.seed)    ## 为单个GPU生成种子
+    torch.cuda.manual_seed_all(args.seed)   ## 为所有GPU生成种子
 
     if is_main_process():
         current_time = datetime.now().strftime('%b%d_%H-%M-%S')

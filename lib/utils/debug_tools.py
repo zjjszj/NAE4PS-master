@@ -7,7 +7,7 @@ def get_rcnn_fg_bg_ratio(args, model):
 
     def _register_debug_hook(engine):
 
-        def _get_rcnn_fg_bg_ratio(module, input, output):
+        def _get_rcnn_fg_bg_ratio(module, input, output):      # forward method`s input and output.
             if engine.state.iteration % args.train.disp_interval == 0:
                 targets = torch.cat(input[1])
                 num_fg = targets.gt(0).sum()
